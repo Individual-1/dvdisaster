@@ -1,8 +1,6 @@
 name: autobuild
 
-on:
-  release:
-    types: [published]
+on: push
 
 jobs:
   win:
@@ -64,14 +62,9 @@ jobs:
           dvdisaster.exe --version
     - name: Upload Release Asset
       id: upload-release-asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v1
       with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./${{ steps.dist.outputs.archive }}
-        asset_name: ${{ steps.dist.outputs.archive }}
-        asset_content_type: application/zip
+        files: ${{ steps.dist.outputs.archive }}
 
   linux64-cli:
     runs-on: ubuntu-latest
@@ -95,14 +88,9 @@ jobs:
       id: dist
     - name: Upload Release Asset
       id: upload-release-asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v1
       with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./${{ steps.dist.outputs.archive }}
-        asset_name: ${{ steps.dist.outputs.archive }}
-        asset_content_type: application/zip
+        files: ${{ steps.dist.outputs.archive }}
 
   linux64-appimage:
     runs-on: ubuntu-18.04
@@ -148,12 +136,7 @@ jobs:
         echo "appimage is <$archive>"
     - name: Upload Release Asset
       id: upload-release-asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v1
       with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./${{ steps.dist.outputs.archive }}
-        asset_name: ${{ steps.dist.outputs.archive }}
-        asset_content_type: application/zip
+        files: ${{ steps.dist.outputs.archive }}
 
