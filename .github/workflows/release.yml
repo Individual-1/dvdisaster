@@ -1,6 +1,9 @@
 name: autobuild
 
-on: push
+on: 
+  push:
+    tags:
+      - "v*.*.*"
 
 jobs:
   win:
