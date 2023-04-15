@@ -23,6 +23,8 @@ jobs:
     defaults:
       run:
         shell: msys2 {0}
+    permissions:
+      contents: write
     steps:
     - uses: msys2/setup-msys2@v2
       with:
@@ -73,6 +75,8 @@ jobs:
 
   linux64-cli:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - uses: actions/checkout@v2
     - name: install prerequisites
@@ -102,6 +106,8 @@ jobs:
 
   linux64-appimage:
     runs-on: ubuntu-18.04
+    permissions:
+      contents: write
     steps:
     - uses: actions/checkout@v2
     - name: install prerequisites
