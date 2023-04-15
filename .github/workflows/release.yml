@@ -96,7 +96,7 @@ jobs:
         files: ${{ steps.dist.outputs.archive }}
 
   linux64-appimage:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
